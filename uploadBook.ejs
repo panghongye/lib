@@ -1,0 +1,124 @@
+<div class="am-g" style="width:90%">
+    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+        <div style="height:40px"></div>
+    </div>
+    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6" style="margin-bottom:40px">
+        <!-- <section class="am-panel am-panel-default"> -->
+
+        <div class="am-panel-bd am-text-center">
+            <div style="padding-top:50px"><img src="/img/litree.jpg" alt="你的一小步，人类分享的一大步！"></div>
+            <h2>你的一小步，人类分享的一大步！</h2>
+            <div class="am-text-left am-inline-block">
+                <ol>
+                    <li>上传书籍（分享者）</li>
+                    <li>资料审核及整理（网站）</li>
+                    <li>发布书籍（网站）</li>
+                </ol>
+            </div>
+        </div>
+        <!-- </section> -->
+    </div>
+    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6" ng-controller="uploadBookCtrl">
+        <form class="am-form" name="myForm" ng-submit="submitForm(myForm.$valid)" novalidate="novalidate"
+              action="/uploadBook" method="post">
+            <fieldset>
+                <legend>书籍资料</legend>
+
+                <div class="am-form-group am-form-icon am-form-feedback">
+                    <label for="name">书名</label>
+                    <input type="text" class="" id="name" name="name" placeholder="输入书籍名称（必填），如：JavaScript高级编程"
+                           ng-model='book.name' required ng-maxlength="50" ng-minlength="1">
+                    <span class="am-icon-check am-text-primary"
+                          ng-show="myForm.name.$dirty && myForm.name.$valid"></span>
+                    <div style="margin-top:10px" class="am-text-primary am-text-sm"
+                         ng-show="myForm.name.$error.minlength||myForm.name.$error.maxlength"> ＃ 书名长度有误。
+                    </div>
+                </div>
+
+                <div class="am-form-group am-form-icon am-form-feedback">
+                    <label for="author">作者/译者</label>
+                    <input type="text" class="" id="author" name="author" placeholder="输入书籍作者（必填），如：李杰 柳靖 刘淼"
+                           ng-model='book.author' required ng-maxlength="40" ng-minlength="1">
+                    <span class="am-icon-check am-text-primary"
+                          ng-show="myForm.author.$dirty && myForm.author.$valid"></span>
+                    <div style="margin-top:10px" class="am-text-primary am-text-sm"
+                         ng-show="myForm.author.$error.minlength||myForm.author.$error.maxlength"> ＃ 作者/译者名字长度有误。
+                    </div>
+                </div>
+
+                <div class="am-form-group am-form-icon am-form-feedback">
+                    <label for="press">出版社</label>
+                    <input type="text" class="" id="press" name="press" placeholder="输入出版社（必填），如：清华大学出版社"
+                           ng-model='book.press' required ng-maxlength="20" ng-minlength="4">
+                    <span class="am-icon-check am-text-primary"
+                          ng-show="myForm.press.$dirty && myForm.press.$valid"></span>
+                    <div style="margin-top:10px" class="am-text-primary am-text-sm"
+                         ng-show="myForm.press.$error.minlength||myForm.press.$error.maxlength"> ＃ 出版社名字长度有误。
+                    </div>
+                </div>
+
+                <div class="am-form-group am-form-icon am-form-feedback">
+                    <label for="lang">语言（必选）</label>
+                    <select id="lang" name="lang" ng-model='book.lang' required>
+                        <option value="gbk">简体中文</option>
+                        <option value="big5">繁体中文</option>
+                        <option value="en">英文</option>
+                    </select>
+                    <span class="am-icon-check am-text-primary"
+                          ng-show="myForm.lang.$dirty && myForm.lang.$valid"></span>
+                </div>
+
+
+                <div class="am-form-group am-form-icon am-form-feedback">
+                    <label for="categoryId">类别（必选）</label>
+                    <select class="" id="category" name="category" ng-model='book.category'
+                            ng-options="c.title group by c.ptitle for c in categoryData" ng-change="select()" required>
+                    </select>
+                    <span class="am-icon-check am-text-primary"
+                          ng-show="myForm.category.$dirty && myForm.category.$valid"></span>
+                </div>
+
+
+                <div class="am-form-group">
+                    <label for="book">电子书 <span
+                                class="am-text-primary am-text-sm">＃目前只支持上传PDF格式且大小在500M内文件，其他文件无效。</span></label>
+                    <div style="margin-bottom:10px">
+                        <input type="file" nv-file-select uploader="uploader" style="width:100%"
+                               ng-disabled="book.selectFile" accept="application/pdf"/>
+                    </div>
+                    <div ng-repeat="item in uploader.queue" style="margin-bottom:20px">
+                        <div>
+                            <span class="am-text-xs"><i class="am-icon-spinner am-icon-pulse"></i> 文件上传中，请耐心等候。</span>
+                            <span class="am-text-xs am-fr">{{ item.file.size/1024/1024|number:2 }} MB</span>
+                        </div>
+                        <div class="am-progress am-progress-striped am-progress-sm am-active">
+                            <div class="am-progress-bar am-progress-bar-secondary"
+                                 style="width: {{ item.progress }}%"></div>
+                        </div>
+                        <div>
+                            <button type="button" class="am-btn am-btn-default am-btn-xs am-fr"
+                                    ng-click="item.remove();book.selectFile=false">取消上传
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <input type="text" ng-model='book.pdfId' name="pdfId" ng-hide='true' required>
+                <input type="text" ng-model='book.pdfMD5' name="pdfMD5" ng-hide='true' required>
+                <input type="text" ng-model='book.pages' name="pages" ng-hide='true' required>
+                <input type="text" ng-model='book.categoryId' name="categoryId" ng-hide='true' required>
+                <input type="text" ng-model='book.categoryName' name="categoryName" ng-hide='true' required>
+                <p>
+                    <button type="submit" class="am-btn am-btn-primary" ng-disabled="myForm.$invalid||!book.pdfId">提交
+                    </button>
+                </p>
+
+            </fieldset>
+        </form>
+
+    </div>
+</div>
+
+
+
