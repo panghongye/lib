@@ -6,7 +6,8 @@ function Graph() {
 function Dictionary() {
   var items = {};
 
-  this.has = (key) => key in items;
+  // this.has = (key) => key in items;
+  this.has = (key) => items.hasOwnProperty(value);
 
   this.set = (key, value) => {
     items[key] = value;
@@ -20,9 +21,7 @@ function Dictionary() {
     return false;
   }
 
-  this.get = key => this.has(key)
-    ? items[key]
-    : undefined;
+  this.get = key => this.has(key)? items[key]: undefined;
 
   this.values = () => {
     var values = [];
@@ -37,7 +36,11 @@ function Dictionary() {
   this.getItems = () => items;
 
   this.size = () => Object.keys(items).length;
-  this.clear;
+
+  this.clear = () => {
+    items = {};
+  };
+
   this.keys;
 
 }
