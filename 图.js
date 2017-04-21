@@ -21,7 +21,7 @@ function Dictionary() {
     return false;
   }
 
-  this.get = key => this.has(key)? items[key]: undefined;
+  this.get = key => this.has(key) ? items[key] : undefined;
 
   this.values = () => {
     var values = [];
