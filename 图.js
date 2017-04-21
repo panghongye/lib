@@ -7,7 +7,7 @@ function Dictionary() {
   var items = {};
 
   // this.has = (key) => key in items;
-  this.has = (key) => items.hasOwnProperty(value);
+  this.has = (key) => items.hasOwnProperty(key);
 
   this.set = (key, value) => {
     items[key] = value;
