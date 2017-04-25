@@ -8,3 +8,4 @@ toQuery = (obj) => {
     return str.substr(0, str.length - 1)
 }
 
+cd N
