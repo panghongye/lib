@@ -1,0 +1,7 @@
+.DS_Store
+.idea
+.vscode
+dump.rdb
+node_modules
+upload
+npm-debug.log
