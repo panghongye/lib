@@ -21,7 +21,7 @@ var offset = 61950
 
 setInterval(() => {
 
-    var url = `http://app.netease.im/app/statistics/smsRecord?
+    var url = `xxx
                t=${new Date().getTime()}&appId=3091324&start=1487692800000&end=1487951999000&limit=20
                &offset=${offset}`
     request
