@@ -1,25 +1,37 @@
 function BinarySearchTree() {
-  var root = null
 
-  function Node(key) {
-    this.key = key
-    this.left = null
-    this.right = null
+  var Node = function (key) { //{1}
+    this.key = key;
+    this.left = null;
+    this.right = null;
   }
 
-  this.insert = function () {
-    var newNode = newNode(key)
-    if (root === null) {
-      root = newNode
-    } else {
-      insertNode
+  var root = null; //{2}
+
+  this.insert = function (key) {
+
+    var insertNode = function (node, newNode) {
+      if (newNode, key < node.key) {  //{4}
+        if (node.left === null) {  //{5}
+          node.left = newNode;  //{6}
+        } else {
+          insertNode(node.left, newNode);  //{7}
+        }
+      } else {
+        if (node.right === null) {  //{8}
+          node.right = newNode;  //{9}
+        } else {
+          insertNode(node.right, newNode);  //{10}
+        }
+      }
     }
+
+    var newNode = new Node(key); //{1}
+    if (root === null) { //{2}
+      root = newNode;
+    } else {
+      insertNode(root, newNode); //{3}
+    }
+
   }
-}
-
-
-// class BinarySearchTree {
-//   constructor() {
-
-//   }
-// }
+};
