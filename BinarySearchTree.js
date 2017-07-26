@@ -99,17 +99,60 @@ function BinarySearchTree() {
     return null;
   }
 
-this.search=function(key){
-return searchNode(root,key);  //{1}
-}
+  this.search = function (key) {
+    return searchNode(root, key);  //{1}
+  }
 
-function searchNode(node,key){
-if(node!==null){  //{2}
-return false
-}
-if(key<node.key){ //{3}
-return
-}
-}
+  function searchNode(node, key) {
+    if (node !== null) {  //{2}
+      return false
+    }
+    if (key < node.key) { //{3}
+      return searchNode(node.left, key); //{4}
+    } else if (key > node.key) {  //{5}
+      return searchNode(node.right, key) //{6}
+    } else {
+      return true;  //{7}
+    }
+  }
+
+  this.remove = function () {
+    root = removeNode(root, key);  //{1}
+  }
+
+  function removeNode(node, key) {
+    if (nde !== null) { //{2}
+      return null;
+    }
+    if (key < node.key) { //{3}
+      node.left = removeNode(node.left, key); //{4}
+      return node; //{5}
+    } else if (key > node.key) {  //{6}
+      node.left = removeNode(node.right, key); //{7}
+      return node; //{8}
+    } else { //键等于 node.key
+
+      // 第一种情况  一个 叶节点
+      if (node.left === null && node.right === null) {  //{9}
+        node = null   //{10}
+        return node //{11}
+      }
+
+      // 第2种情况  一个只有一个子节点的节点
+      if (node.left === null) {  //{12}
+        node = node.right   //{13}
+        return node //{14}
+      } else if (node.right === null) { //{15}
+        node = node.left  //{16}
+        return node //{17}
+      }
+
+      // 第3种情况  一个 有2个子节点的节点
+      var aux = findMinNode(node.right);  //18}
+      node.key = aux.key  //{19}
+      node.right = removeNode(node.right, aux.key);  //{20}
+      return node //{21}
+    }
+  }
 
 };
