@@ -14,36 +14,36 @@ class BinarySearchTree {
 
   insert(key) {
     var newNode = new Node(key); //{1}
-    if (root === null) root = newNode; //{2}
-    else insertNode(root, newNode); //{3}
+    if (this.root === null) this.root = newNode; //{2}
+    else insertNode(this.root, newNode); //{3}
   }
 
   inOrderTraverse(callback) {
-    inOrderTraverseNode(root, callback);  //{1}
+    inOrderTraverseNode(this.root, callback);  //{1}
   }
 
   preOrderTraverse(callback) {
-    preOrderTraverseNode(root, callback);
+    preOrderTraverseNode(this.root, callback);
   }
 
   postOrderTraverse(callback) {
-    postOrderTraverseNode(root, callback)
+    postOrderTraverseNode(this.root, callback)
   }
 
   min() {
-    return minNode(root);  //{1}
+    return minNode(this.root);  //{1}
   }
 
   max() {
-    return maxNode(root);
+    return maxNode(this.root);
   }
 
   search(key) {
-    return searchNode(root, key);  //{1}
+    return searchNode(this.root, key);  //{1}
   }
 
   remove() {
-    root = removeNode(root, key);  //{1}
+    this.root = removeNode(this.root, key);  //{1}
   }
 
 }
