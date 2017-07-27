@@ -7,8 +7,6 @@ class Node {
 }
 
 
-
-
 function BinarySearchTree() {
 
   var root = null; //{2}
@@ -18,7 +16,8 @@ function BinarySearchTree() {
     var newNode = new Node(key); //{1}
     if (root === null) { //{2}
       root = newNode;
-    } else {
+    }
+    else {
       insertNode(root, newNode); //{3}
     }
 
