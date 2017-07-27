@@ -9,42 +9,43 @@ class Node {
 
 class BinarySearchTree {
   constructor() {
-    var root = null; //{2}
-
-    this.insert = function (key) {
-      var newNode = new Node(key); //{1}
-      if (root === null) root = newNode; //{2}
-      else insertNode(root, newNode); //{3}
-    }
-
-    this.inOrderTraverse = function (callback) {
-      inOrderTraverseNode(root, callback);  //{1}
-    }
-
-    this.preOrderTraverse = function (callback) {
-      preOrderTraverseNode(root, callback);
-    }
-
-    this.postOrderTraverse = function (callback) {
-      postOrderTraverseNode(root, callback)
-    }
-
-    this.min = function () {
-      return minNode(root);  //{1}
-    }
-
-    this.max = function () {
-      return maxNode(root);
-    }
-
-    this.search = function (key) {
-      return searchNode(root, key);  //{1}
-    }
-
-    this.remove = function () {
-      root = removeNode(root, key);  //{1}
-    }
+    this.root = null; //{2}
   }
+
+  insert(key) {
+    var newNode = new Node(key); //{1}
+    if (root === null) root = newNode; //{2}
+    else insertNode(root, newNode); //{3}
+  }
+
+  inOrderTraverse(callback) {
+    inOrderTraverseNode(root, callback);  //{1}
+  }
+
+  preOrderTraverse(callback) {
+    preOrderTraverseNode(root, callback);
+  }
+
+  postOrderTraverse(callback) {
+    postOrderTraverseNode(root, callback)
+  }
+
+  min() {
+    return minNode(root);  //{1}
+  }
+
+  max() {
+    return maxNode(root);
+  }
+
+  search(key) {
+    return searchNode(root, key);  //{1}
+  }
+
+  remove() {
+    root = removeNode(root, key);  //{1}
+  }
+
 }
 
 
