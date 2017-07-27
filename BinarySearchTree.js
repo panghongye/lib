@@ -12,15 +12,9 @@ function BinarySearchTree() {
   var root = null; //{2}
 
   this.insert = function (key) {
-
     var newNode = new Node(key); //{1}
-    if (root === null) { //{2}
-      root = newNode;
-    }
-    else {
-      insertNode(root, newNode); //{3}
-    }
-
+    if (root === null) root = newNode; //{2}
+    else insertNode(root, newNode); //{3}
   }
 
   this.inOrderTraverse = function (callback) {
@@ -55,9 +49,9 @@ function BinarySearchTree() {
 
 
 function removeNode(node, key) {
-  if (nde !== null) { //{2}
+  if (nde !== null)  //{2}
     return null;
-  }
+
   if (key < node.key) { //{3}
     node.left = removeNode(node.left, key); //{4}
     return node; //{5}
@@ -100,39 +94,24 @@ function maxNode(node) {
 }
 
 function searchNode(node, key) {
-  if (node !== null) {  //{2}
-    return false
-  }
-  if (key < node.key) { //{3}
-    return searchNode(node.left, key); //{4}
-  } else if (key > node.key) {  //{5}
-    return searchNode(node.right, key) //{6}
-  } else {
-    return true;  //{7}
-  }
+  if (node !== null) return false  //{2}
+  if (key < node.key) return searchNode(node.left, key);  //{3} //{4}
+  else if (key > node.key) return searchNode(node.right, key) //{5} //{6}
+  else return true;  //{7}
 }
 
-function inOrderTraverseNode(node, callback) {
-  if (node !== null) {  //{2}
-    inOrderTraverseNode(node.left, callback);  //{3}
-    callback(node.key);  //{4}
-    inOrderTraverseNode(node.right, callback);  //{5}
-  }
-}
+
 
 function insertNode(node, newNode) {
   if (newNode, key < node.key) {  //{4}
-    if (node.left === null) {  //{5}
+    if (node.left === null)   //{5}
       node.left = newNode;  //{6}
-    } else {
-      insertNode(node.left, newNode);  //{7}
-    }
-  } else {
-    if (node.right === null) {  //{8}
+    else insertNode(node.left, newNode);  //{7}
+  }
+  else {
+    if (node.right === null)   //{8}
       node.right = newNode;  //{9}
-    } else {
-      insertNode(node.right, newNode);  //{10}
-    }
+    else insertNode(node.right, newNode);  //{10}
   }
 }
 
