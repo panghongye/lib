@@ -49,12 +49,8 @@ class BinarySearchTree {
 }
 
 
-
-
-
-
 function insertNode(node, newNode) {
-  if (newNode, key < node.key) {  //{4}
+  if (newNode.key < node.key) {  //{4}
     if (node.left === null)   //{5}
       node.left = newNode;  //{6}
     else insertNode(node.left, newNode);  //{7}
@@ -108,7 +104,7 @@ function inOrderTraverseNode(node, callback) {
   if (node !== null) {  //{2}
     inOrderTraverseNode(node.left, callback);  //{3}
     callback(node.key);  //{4}
-    inOrderTraverseNode(node.right, callback);  //{5}
+    inOrderTraverseNode(node.right, callback);  //{5}   
   }
 }
 
@@ -156,3 +152,15 @@ function searchNode(node, key) {
   else if (key > node.key) return searchNode(node.right, key) //{5} //{6}
   else return true;  //{7}
 }
+
+
+
+// test
+function printNode(value) {
+  console.log(value)
+}
+
+tree = new BinarySearchTree()
+
+tree.insert(11)
+tree.insert(7)
