@@ -146,7 +146,6 @@ function preOrderTraverseNode(node, callback) {
 }
 
 
-
 function minNode(node) {
   if (node) {
     while (node && node.left !== null) {  //{2}
