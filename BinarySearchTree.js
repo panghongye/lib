@@ -56,8 +56,7 @@ function insertNode(node, newNode) {
     else insertNode(node.left, newNode);  //{7}
   }
   else {
-    if (node.right === null)   //{8}
-      node.right = newNode;  //{9}
+    if (node.right === null) node.right = newNode;  //  {8} {9}
     else insertNode(node.right, newNode);  //{10}
   }
 }
@@ -104,7 +103,7 @@ function inOrderTraverseNode(node, callback) {
   if (node !== null) {  //{2}
     inOrderTraverseNode(node.left, callback);  //{3}
     callback(node.key);  //{4}
-    inOrderTraverseNode(node.right, callback);  //{5}   
+    inOrderTraverseNode(node.right, callback);  //{5}
   }
 }
 
