@@ -37,7 +37,8 @@ class PubSubHandler {
 
   //发布
   trigger(topicName, ...args) {
-    this.eventPool[topicName] && this.eventPool[topicName].forEach(callback => callback(...args));
+    let topic = this.eventPool[topicName];
+    topic && topic.forEach(callback => callback(...args));
   }
 
   //移除
