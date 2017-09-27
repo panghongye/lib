@@ -23,7 +23,7 @@ class StateTracker {
 
 
 
-class PubSubHandler {
+class PublishOn {
   constructor() {
     this.eventPool = {};
   }
@@ -36,7 +36,7 @@ class PubSubHandler {
   }
 
   //发布
-  trigger(topicName, ...args) {
+  publish(topicName, ...args) {
     let topic = this.eventPool[topicName];
     topic && topic.forEach(callback => callback(...args));
   }
@@ -45,8 +45,6 @@ class PubSubHandler {
   off(topicName) {
     delete this.eventPool[topicName]
   }
-
-
 
 }
 
