@@ -6,7 +6,7 @@ class StateTracker {
 
   // 注册观察者
   registerObserver(ObserverFn) {
-    if (typeof ObserverFn !== "function") return console.error('registerObserver 的参数必须是一个函数')
+    if (typeof ObserverFn !== "function") return console.error('registerObserver 的第1参数必须是一个函数')
     this.observers.push(ObserverFn)
   }
 
@@ -30,6 +30,8 @@ class PublishOn {
 
   //订阅
   on(topicName, callback) {
+    if (typeof ObserverFn !== "function") return console.error('on 的第2参数必须是一个函数')
+    
     let topic = this.eventPool[topicName];
     if (!topic) this.eventPool[topicName] = []
     this.eventPool[topicName].push(callback)
