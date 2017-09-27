@@ -1,21 +1,26 @@
 class StateTracker {
   constructor() {
     this.observers = [];
-    this.internalState = 10;
+    this.state = 10;
   }
 
   // 注册观察者
   registerObserver(ObserverFn) {
+    if (typeof ObserverFn !== "function") return console.error('registerObserver 的参数必须是一个函数')
     this.observers.push(ObserverFn)
   }
 
   // 改变内部状态，触发状态的观察者列表
   change(val) {
-    this.internalState = val;
+    this.state = val;
     this.observers.forEach(observer => observer(val));
   }
 
 }
+
+
+
+
 
 
 class PubSubHandler {
