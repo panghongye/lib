@@ -15,7 +15,6 @@ class StateTracker {
     this.observers.forEach(observer => observer(val));
   }
 
-
 }
 
 
@@ -27,9 +26,7 @@ class PubSubHandler {
   //订阅
   on(topicName, callback) {
     let topic = this.eventPool[topicName];
-    if (!topic) {
-      this.eventPool[topicName] = []
-    }
+    if (!topic) this.eventPool[topicName] = []
     this.eventPool[topicName].push(callback)
   }
 
