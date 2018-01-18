@@ -21,8 +21,6 @@ class StateTracker {
 
 
 
-
-
 class PublishOn {
   constructor() {
     this.eventPool = {};
@@ -30,8 +28,8 @@ class PublishOn {
 
   //订阅
   on(topicName, callback) {
-    if (typeof ObserverFn !== "function") return console.error('on 的第2参数必须是一个函数')
-    
+    if (typeof callback !== "function") return console.error('on 的第2参数必须是一个函数')
+
     let topic = this.eventPool[topicName];
     if (!topic) this.eventPool[topicName] = []
     this.eventPool[topicName].push(callback)
