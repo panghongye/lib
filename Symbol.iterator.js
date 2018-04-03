@@ -1,18 +1,20 @@
 class RangeIterator {
   constructor(start, stop) {
-    this.value = start;
-    this.stop = stop;
+    this.value = start
+    this.stop = stop
   }
 
-  [Symbol.iterator]() { return this; }
+  [Symbol.iterator]() {
+    return this
+  }
 
   next() {
-    var value = this.value;
+    var value = this.value
     if (value < this.stop) {
-      this.value++;
-      return {done: false, value: value};
+      this.value++
+      return { done: false, value: value }
     }
-    return {done: true, value: undefined};
+    return { done: true, value: undefined }
   }
 }
 
@@ -24,5 +26,4 @@ class RangeIterator {
 //   console.log(value); // 0, 1, 2
 // }
 
-
-console.log(new RangeIterator(0,3))
+console.log(new RangeIterator(0, 3))
