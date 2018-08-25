@@ -22,11 +22,11 @@ module.exports = class ArrayToTree {
     }
     _temp[this.treeKey] = item[this.key]
     for (var _index in item) {
-      if (_index != this.key && _index != this.parentKey) {
-        var _property = item[_index]
-        if (!!this.map && this.map[_index]) _temp[this.map[_index]] = _property
-        else _temp[_index] = _property
-      }
+      // if (_index != this.key && _index != this.parentKey) {
+      var _property = item[_index]
+      if (!!this.map && this.map[_index]) _temp[this.map[_index]] = _property
+      else _temp[_index] = _property
+      // }
     }
     return _temp
   }
@@ -66,27 +66,27 @@ module.exports = class ArrayToTree {
 }
 //使用示例，data需要有key parentKey属性，其它属性内容没有限制。
 var data = [
-  { id: 1, parent: 0, text: "A" },
-  { id: 2, parent: 4, text: "B" },
-  { id: 3, parent: 7, text: "C" },
-  { id: 4, parent: 1, text: "D" },
-  { id: 5, parent: 0, text: "E" },
-  { id: 6, parent: 5, text: "B" },
-  { id: 7, parent: 4, text: "F" },
+  { id: 1, parent: 0, text: 'A' },
+  { id: 2, parent: 4, text: 'B' },
+  { id: 3, parent: 7, text: 'C' },
+  { id: 4, parent: 1, text: 'D' },
+  { id: 5, parent: 0, text: 'E' },
+  { id: 6, parent: 5, text: 'B' },
+  { id: 7, parent: 4, text: 'F' },
 ]
 //简单使用
-var tree = new ArrayToTree(data, "id", "parent")
+var tree = new ArrayToTree(data, 'id', 'parent')
 console.log(tree.toTree())
 
 //带属性名称转换
 data = [
-  { id: 1, parent: 0, text: "A" },
-  { id: 2, parent: 4, text: "B" },
-  { id: 3, parent: 7, text: "C" },
-  { id: 4, parent: 1, text: "D" },
-  { id: 5, parent: 0, text: "E" },
-  { id: 6, parent: 5, text: "B" },
-  { id: 7, parent: 4, text: "F" },
+  { id: 1, parent: 0, text: 'A' },
+  { id: 2, parent: 4, text: 'B' },
+  { id: 3, parent: 7, text: 'C' },
+  { id: 4, parent: 1, text: 'D' },
+  { id: 5, parent: 0, text: 'E' },
+  { id: 6, parent: 5, text: 'B' },
+  { id: 7, parent: 4, text: 'F' },
 ]
-var tree1 = new ArrayToTree(data, "id", "parent", { text: "title", id: "id0" })
+var tree1 = new ArrayToTree(data, 'id', 'parent', { text: 'title', id: 'id0' })
 console.log(tree1.toTree())
