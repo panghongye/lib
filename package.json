@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "mongoose": "^4.13.7",
+    "mongoose": "^4.13.21",
     "superagent": "^3.5.2"
   }
 }
